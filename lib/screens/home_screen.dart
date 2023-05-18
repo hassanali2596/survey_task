@@ -79,7 +79,8 @@ class HomeScreenState extends State<HomeScreen>
       ),
             Spacer(),
             customText(
-            text: S.of(context)!.arabic,
+            text: (Provider.of<UserProvider>(context, listen: false).locale=="ar")
+                ? S.of(context)!.english:S.of(context)!.arabic,
             fontSize: SIZE20,
             textColor: blackColor,
             lineesSpace: 1.7,
