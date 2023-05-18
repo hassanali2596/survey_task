@@ -35,8 +35,7 @@ void main() async{
     //     .then((_) async {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown])
         .then((_) async {
-      runApp(Phoenix(
-          child:MyApp()));
+      runApp(App());
       // initWorkM();
     });
   }, (error, stackTrace) {

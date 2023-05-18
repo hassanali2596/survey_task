@@ -89,13 +89,13 @@ class HomeScreenState extends State<HomeScreen>
                 bool success = await Provider.of<UserProvider>(
                     context, listen: false)
                     .changeLanguage("en");
-                if (success) Phoenix.rebirth(context);
+                // if (success) Phoenix.rebirth(context);
               }
               else{
                 bool success = await Provider.of<UserProvider>(
                     context, listen: false)
                     .changeLanguage("ar");
-                if (success) Phoenix.rebirth(context);
+                // if (success) Phoenix.rebirth(context);
               }
 
               }

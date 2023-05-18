@@ -2,26 +2,19 @@ import 'package:HSB/providers/home_provider.dart';
 import 'package:HSB/providers/user_provider.dart';
 import 'package:HSB/screens/add_survey_screen.dart';
 import 'package:HSB/screens/home_screen.dart';
-
 import 'package:HSB/screens/splash_screen.dart';
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:provider/provider.dart';
 import 'constants/appColors.dart';
 import 'localization/i18n.dart';
 
-
-class MyApp extends StatefulWidget {
-  static final navigatorKey = GlobalKey<NavigatorState>();
-  static final String routeName = "/myApp";
-
-
-  MyAppState createState() => MyAppState();
+class App extends StatefulWidget {
+  AppState createState() => AppState();
 }
 
-class MyAppState extends State<MyApp> {
+class AppState extends State<App> {
   @override
   void initState() {
     super.initState();
@@ -35,22 +28,20 @@ class MyAppState extends State<MyApp> {
         builder: (context, value, child) {
           return MultiProvider(
             providers: [
-
-              ChangeNotifierProvider(create: (ctx) => UserProvider()),
               ChangeNotifierProvider(create: (ctx) => HomeProvider()),
+
             ],
             child: MaterialApp(
-              navigatorKey: MyApp.navigatorKey,
               theme: ThemeData(
-                accentColor: blackColor,
-                unselectedWidgetColor: blackColor,
-
-                primaryColor: main_color,
-                  fontFamily: Provider.of<UserProvider>(context).locale == 'ar' ? 'Bahij_SansArabic_Plain' : 'inter',
-                canvasColor: whiteColor,
+                  accentColor: blackColor,
+                  unselectedWidgetColor: blackColor,
+                  primaryColor: main_color,
+                  fontFamily: 'REGULAR'
+                // fontFamily: Provider.of<UserProvider>(context).locale == 'ar' ? 'Arabic-Regular' : 'QualionRound-Regular'
               ),
               debugShowCheckedModeBanner: false,
-              locale: new Locale(Provider.of<UserProvider>(context).locale, ""),
+              locale:
+              new Locale(Provider.of<UserProvider>(context).locale!, ""),
               localizationsDelegates: [
                 S.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -59,12 +50,10 @@ class MyAppState extends State<MyApp> {
               ],
               supportedLocales: S.delegate.supportedLocales,
               localeListResolutionCallback:
-              S.delegate.listResolution(fallback: const Locale('ar', '')),
-              home: DoubleBack(
-                  message: '',
-                  child:
-                  SplashScreen()
-                //     SelectLanguageScreen()
+              S.delegate.listResolution(fallback: const Locale('en', '')),
+              //   home: DoubleBack(message: '', child: ComplaintOthersScreen()
+              home: DoubleBack(message: '', child: SplashScreen()
+                // SwipeButton()
               ),
               onGenerateRoute: _getRoutes,
             ),
@@ -75,12 +64,8 @@ class MyAppState extends State<MyApp> {
   }
 
   static var routes = <String, WidgetBuilder>{
-
-    MyApp.routeName: (ctx) => MyApp(),
-
-      HomeScreen.routeName: (ctx) => HomeScreen(),
+    HomeScreen.routeName: (ctx) => HomeScreen(),
     AddSurveyScreen.routeName: (ctx) => AddSurveyScreen(),
-
 
 
   };
